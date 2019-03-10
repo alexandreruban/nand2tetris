@@ -13,5 +13,80 @@ CHIP Inc16 {
     OUT out[16];
 
     PARTS:
-   // Put you code here:
+
+    Not(in=in[0], out=out[0]);
+    Not(in=in[0], out=stop0);
+
+    Xor(a=in[1], b=stop0, out=xor1);
+    Not(in=xor1, out=out[1]);
+    Not(in=xor1, out=notxor1);
+    Or(a=notxor1, b=stop0, out=stop1);
+
+    Xor(a=in[2], b=stop1, out=xor2);
+    Not(in=xor2, out=out[2]);
+    Not(in=xor2, out=notxor2);
+    Or(a=notxor2, b=stop1, out=stop2);
+
+    Xor(a=in[3], b=stop2, out=xor3);
+    Not(in=xor3, out=out[3]);
+    Not(in=xor3, out=notxor3);
+    Or(a=notxor3, b=stop2, out=stop3);
+
+    Xor(a=in[4], b=stop3, out=xor4);
+    Not(in=xor4, out=out[4]);
+    Not(in=xor4, out=notxor4);
+    Or(a=notxor4, b=stop3, out=stop4);
+
+    Xor(a=in[5], b=stop4, out=xor5);
+    Not(in=xor5, out=out[5]);
+    Not(in=xor5, out=notxor5);
+    Or(a=notxor5, b=stop4, out=stop5);
+
+    Xor(a=in[6], b=stop5, out=xor6);
+    Not(in=xor6, out=out[6]);
+    Not(in=xor6, out=notxor6);
+    Or(a=notxor6, b=stop5, out=stop6);
+
+    Xor(a=in[7], b=stop6, out=xor7);
+    Not(in=xor7, out=out[7]);
+    Not(in=xor7, out=notxor7);
+    Or(a=notxor7, b=stop6, out=stop7);
+
+    Xor(a=in[8], b=stop7, out=xor8);
+    Not(in=xor8, out=out[8]);
+    Not(in=xor8, out=notxor8);
+    Or(a=notxor8, b=stop7, out=stop8);
+
+    Xor(a=in[9], b=stop8, out=xor9);
+    Not(in=xor9, out=out[9]);
+    Not(in=xor9, out=notxor9);
+    Or(a=notxor9, b=stop8, out=stop9);
+
+    Xor(a=in[10], b=stop9, out=xor10);
+    Not(in=xor10, out=out[10]);
+    Not(in=xor10, out=notxor10);
+    Or(a=notxor10, b=stop9, out=stop10);
+
+    Xor(a=in[11], b=stop10, out=xor11);
+    Not(in=xor11, out=out[11]);
+    Not(in=xor11, out=notxor11);
+    Or(a=notxor11, b=stop10, out=stop11);
+
+    Xor(a=in[12], b=stop11, out=xor12);
+    Not(in=xor12, out=out[12]);
+    Not(in=xor12, out=notxor12);
+    Or(a=notxor12, b=stop11, out=stop12);
+
+    Xor(a=in[13], b=stop12, out=xor13);
+    Not(in=xor13, out=out[13]);
+    Not(in=xor13, out=notxor13);
+    Or(a=notxor13, b=stop12, out=stop13);
+
+    Xor(a=in[14], b=stop13, out=xor14);
+    Not(in=xor14, out=out[14]);
+    Not(in=xor14, out=notxor14);
+    Or(a=notxor14, b=stop13, out=stop14);
+
+    Xor(a=in[15], b=stop14, out=xor15);
+    Not(in=xor15, out=out[15]);
 }
