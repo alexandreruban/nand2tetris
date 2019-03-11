@@ -71,7 +71,7 @@ Chip And4 {
 
 The goal of the project is to create an Arithmetic Logic Unit from scratch.
 
-## Project 3 : RAM an counter
+## Project 3 : RAM and counter
 
 The goal of the project is to create a 1 bit register, a 16 bit register,
 all sorts of RAM chips and a counter based on the chips from previous chapters
