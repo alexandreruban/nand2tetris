@@ -66,3 +66,13 @@ Chip And4 {
   And(a=a[3], b=b[3], out=out[3]);
 }
 ```
+
+## Project 2 : ALU
+
+The goal of the project is to create an Arithmetic Logic Unit from scratch.
+
+## Project 3 : RAM an counter
+
+The goal of the project is to create a 1 bit register, a 16 bit register,
+all sorts of RAM chips and a counter based on the chips from previous chapters
+and a Data Flip Flop (DFF) gate.
