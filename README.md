@@ -76,3 +76,27 @@ The goal of the project is to create an Arithmetic Logic Unit from scratch.
 The goal of the project is to create a 1 bit register, a 16 bit register,
 all sorts of RAM chips and a counter based on the chips from previous chapters
 and a Data Flip Flop (DFF) gate.
+
+## Project 4 : Machine language
+
+In Hack machine language, there are two sort of instructions :
+* A instructions which are used to select an address in the RAM (@12)
+* C instructions used to perform a simple operation (D; JGT)
+
+It is possible to declare variables that refers to some memory location using
+for example @sum or @i
+
+It is possible to declare some labels for example @END and later in the code (END).
+Such labels are used in order to be easier tu remember lines of the machine
+language program. For example :
+
+```
+@LOOP
+0;JMP
+```
+
+means go to the (LOOP) label line instead of specifing the number of the line.
+
+Also the I/O pointer SCREEN and KBD are defined to refer to memory location 16348
+and 24576 (beginning of the screen memory map and beginning of the keyboard memory
+map).
