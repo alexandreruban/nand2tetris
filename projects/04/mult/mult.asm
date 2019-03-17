@@ -24,6 +24,9 @@
 //   break if i = num
 
 // Initializing variables
+@R2
+M=0
+
 @R0
 D=M
 @base
