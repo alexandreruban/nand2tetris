@@ -74,8 +74,8 @@ Chip And4 {
 
 The goal of the project is to create an Arithmetic Logic Unit from scratch.
 
-In order to build our ALU, we first build a `Half Adder` with a `And` and a 
-`Xor` gate, that takes a and b as an input and yields the sum and the carry 
+In order to build our ALU, we first build a `Half Adder` with a `And` and a
+`Xor` gate, that takes a and b as an input and yields the sum and the carry
 as an output. From there, we can build a `Full Adder` and then a `16-bit Adder`.
 
 Then, based on those chips, whe can build the ALU. It has the following inputs :
@@ -93,7 +93,7 @@ It has the following outputs :
 * `zr` true if out = 0
 * `ng` true if out < 0
 
-Using those 6 control bits wisely, we are able to perform the following operations : 
+Using those 6 control bits wisely, we are able to perform the following operations :
 
 | zx  | nx  | zy  | ny  | f   | no  |out  |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -115,12 +115,33 @@ Using those 6 control bits wisely, we are able to perform the following operatio
 | 0   | 0   | 0   | 1   | 1   | 1   | y-x |
 | 0   | 0   | 0   | 0   | 0   | 0   | x&y |
 | 0   | 1   | 0   | 1   | 0   | 1   | x|y |
-  
+
+We finish this project by building an incrementer which performs the simple task
+out = in + 1.
+
 ## Project 3 : RAM and counter
 
 The goal of the project is to create a 1 bit register, a 16 bit register,
 all sorts of RAM chips and a counter based on the chips from previous chapters
-and a Data Flip Flop (DFF) gate.
+and a Data Flip Flop (DFF) gate. The DFF gate is a simple gate that receives a
+signal a repeats it one time unit after it received is `out(t+1) = in(t)`.
+Based on this DFF, it is possible to build a 1-bit register (a gate that stores
+only one bit) using a multiplexor and a DFF. Is is then possible to build a 16-bit
+register.
+
+It is now possible to build a RAM8 which takes as an input `in[16]`, `load`, and
+`address[3]` and outputs the value of the selected register.
+This RAM8 chip is a memory of 8 registers, each 16 bit-wide. It
+holds the value stored at the memory location specified by address.
+It is possible to store data using the load bit.
+From there, it is possible to build all types of memories of different size.
+
+At the end of the project, we also build a `Program Counter` (PC) :
+A 16-bit counter with load and reset control bits.
+ * if      (reset[t] == 1) out[t+1] = 0
+ * else if (load[t] == 1)  out[t+1] = in[t]
+ * else if (inc[t] == 1)   out[t+1] = out[t] + 1  (integer addition)
+ * else                    out[t+1] = out[t]
 
 ## Project 4 : Machine language
 
