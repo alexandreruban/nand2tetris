@@ -149,6 +149,79 @@ In Hack machine language, there are two sort of instructions :
 * A instructions which are used to select an address in the RAM (@12)
 * C instructions used to perform a simple operation (D; JGT)
 
+**A instructions**
+The A-instruction is used to set the A register to a 15-bit value.
+It's binary representation is 0vvv vvvv vvvv vvvv.
+
+**C instructions**
+The C-instruction is the programming workhorse of the Hack platform.
+The instruction code is a specification that answers three questions :
+
+1. What to compute ?
+2. Where to store the result ?
+3. What to do next ?
+
+Its binary representation is 111 a cccccc ddd jjj.
+
+It starts with 1 by convention, then 11 also by convention because we are not
+going to use those 2 bits.
+
+Then, a and cccccc allows us to perform the following operations (computation part) :
+
+| a=0 | c1  | c2  | c3  | c4  | c5  | c6  | a=1 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 0   | 1   | 0   | 1   | 0   | 1   | 0   |     |
+| 1   | 1   | 1   | 1   | 1   | 1   | 1   |     |
+| -1  | 1   | 1   | 1   | 0   | 1   | 0   |     |
+| D   | 0   | 0   | 1   | 1   | 0   | 0   |     |
+| A   | 1   | 1   | 0   | 0   | 0   | 0   | M   |
+| !D  | 0   | 0   | 1   | 1   | 0   | 1   |     |
+| !A  | 1   | 1   | 0   | 0   | 0   | 1   | !M  |
+| -D  | 0   | 0   | 1   | 1   | 1   | 1   |     |
+| -A  | 1   | 1   | 0   | 0   | 1   | 1   | -M  |
+| D+1 | 0   | 1   | 1   | 1   | 1   | 1   |     |
+| A+1 | 1   | 1   | 0   | 1   | 1   | 1   | M+1 |
+| D-1 | 0   | 0   | 1   | 1   | 1   | 0   |     |
+| A-1 | 1   | 1   | 0   | 0   | 1   | 0   | M-1 |
+| D+A | 0   | 0   | 0   | 0   | 1   | 0   | D+M |
+| D-A | 0   | 1   | 0   | 0   | 1   | 1   | D-M |
+| A-D | 0   | 0   | 0   | 1   | 1   | 1   | M-D |
+| D&A | 0   | 0   | 0   | 0   | 0   | 0   | D&M |
+| D|A | 0   | 1   | 0   | 1   | 0   | 1   | D|M |
+
+D and A are names of registers. M refers to the memory location addressed by A,
+namely, to Memory[A].
+
+Then the destination part is used to know where to store the information according
+to the following table :
+
+| d1  | d2  | d3  | destination |
+| --- | --- | --- | ----------- |
+| 0   | 0   | 0   | null        |
+| 0   | 0   | 1   | M           |
+| 0   | 1   | 0   | D           |
+| 0   | 1   | 1   | MD          |
+| 1   | 0   | 0   | A           |
+| 1   | 0   | 1   | AM          |
+| 1   | 1   | 0   | AD          |
+| 1   | 1   | 1   | AMD         |
+
+Then the jump part is used to know which instuction should be executed after
+according to the following table :
+
+| d1  | d2  | d3  | effect           |
+| --- | --- | --- | ---------------- |
+| 0   | 0   | 0   | no jump          |
+| 0   | 0   | 1   | jump if out > 0  |
+| 0   | 1   | 0   | jump if out = 0  |
+| 0   | 1   | 1   | jump if out >= 0 |
+| 1   | 0   | 0   | jump if out < 0  |
+| 1   | 0   | 1   | jump if out != 0 |
+| 1   | 1   | 0   | jump if out <= 0 |
+| 1   | 1   | 1   | jump             |
+
+**Syntaxic sugar**
+
 It is possible to declare variables that refers to some memory location using
 for example @sum or @i
 
@@ -163,6 +236,6 @@ language program. For example :
 
 means go to the (LOOP) label line instead of specifing the number of the line.
 
-Also the I/O pointer SCREEN and KBD are defined to refer to memory location 16348
+Also the I/O pointers SCREEN and KBD are defined to refer to memory location 16348
 and 24576 (beginning of the screen memory map and beginning of the keyboard memory
 map).
