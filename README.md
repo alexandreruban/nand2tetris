@@ -1,4 +1,5 @@
 # nand2tetris
+
 ## Project 1 : Logic Gates
 
 The goal of this project is to create form the `Nand` gate, 16 basic gates
@@ -209,7 +210,7 @@ to the following table :
 Then the jump part is used to know which instuction should be executed after
 according to the following table :
 
-| d1  | d2  | d3  | effect           |
+| j1  | j2  | j3  | effect           |
 | --- | --- | --- | ---------------- |
 | 0   | 0   | 0   | no jump          |
 | 0   | 0   | 1   | jump if out > 0  |
@@ -239,3 +240,18 @@ means go to the (LOOP) label line instead of specifing the number of the line.
 Also the I/O pointers SCREEN and KBD are defined to refer to memory location 16348
 and 24576 (beginning of the screen memory map and beginning of the keyboard memory
 map).
+
+## Project 5 : Assemble the whole computer
+
+The goal of this project is to assemble the whole computer.
+First we will have to design the CPU that will integrate :
+* the ALU
+* the A register
+* the D register
+
+The CPU will write and read data from the RAM (data memory). It will also read
+the instructions that are given by the ROM (insturction memory). A Program Counter
+(PC) will take care of keeping track of the next instruction line to be executed.
+
+The overall architecture of the CPU is given in `Figure 5.9` of the book and the
+computer architecture is described in `Figure 5.10` of the book.
